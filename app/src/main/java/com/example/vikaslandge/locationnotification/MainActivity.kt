@@ -2,7 +2,9 @@ package com.example.vikaslandge.locationnotification
 
 import android.annotation.SuppressLint
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -50,6 +52,12 @@ class MainActivity : AppCompatActivity() {
         nCompact.setSmallIcon(R.drawable.ic_mood_black_24dp)
             nCompact.setAutoCancel(true)
         nManager.notify(1,nCompact.build())
+            var i = Intent(this@MainActivity,
+                    MainActivity::class.java)
+            var pIntent = PendingIntent.getActivity(
+                    this@MainActivity,0,i,0)
+            val contentIntent = nCompact.setContentIntent(pIntent)
+            nManager.notify(1,nCompact.build())
         }
     }
 }
